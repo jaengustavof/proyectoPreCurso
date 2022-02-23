@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b3275f9798.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="gameContainer">
+        <!--INDICES-->
+        <div class="letras">
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+            <div>D</div>
+            <div>E</div>
+            <div>F</div>
+            <div>G</div>
+            <div>H</div>
+            <div>I</div>
+            <div>J</div>
+        </div>
+        <div class="numeros">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+        </div>
+        <!--INDICES-->
+
+        <!--Casilleros-->
+        <div class="barcos" id="barco">
+        </div>
+        <main id="principal">
+        </main>
+        <!--Casilleros-->
+    </div>
+
+    <div id="shipContainer">
+        <div class="title">Barcos</div>
+        <!--
+        <div class="contenedorBarco">
+            <i class="fas fa-skull-crossbones"></i>
+            <img src="./assets/img/barco.svg" alt="">   
+        </div>
+        <div class="contenedorBarco">
+            <i class="fas fa-skull-crossbones"></i>
+            <img src="./assets/img/barco.svg" alt="">      
+        </div>
+        <div class="contenedorBarco">
+            <i class="fas fa-skull-crossbones"></i>
+            <img src="./assets/img/barco.svg" alt="">
+        </div>
+        <div class="contenedorBarco">
+            <i class="fas fa-skull-crossbones"></i>
+            <img src="./assets/img/barco.svg" alt="">
+        </div>
+        -->
+    </div>
+    
+
+    <script>
+        /*Seleccionamos los elementos e imprimimos los casilleros*/
+        let barcoDiv = "";
+        let boxDiv = ""
+        for(let i = 1; i <=100; i++){
+            barcoDiv += "<div class='barco' value="+i+"></div>";
+            boxDiv += "<div class='box' value="+i+"></div>";
+        }
+
+        let barcodiv = document.getElementById("barco")
+        barcodiv.innerHTML = barcoDiv;
+
+        let principal = document.getElementById("principal")
+        principal.innerHTML = boxDiv;
+
+        
+        /*Seleccionamos los elementos e imprimimos los casilleros*/
+
+        /* Guardamos los casilleros en variables */
+        const barcos = document.querySelectorAll(".barco");
+        const boxes = document.querySelectorAll(".box");
+        /* Guardamos los casilleros en variables */
+
+        function Barco(a,b,c){
+            this.position = [a,b,c];
+            this.hits = 0;
+            this.sink = function(intentos){
+                       if(this.position.includes(intentos.slice(-1)[0])) {
+                           this.hits++;
+                           barcos[(intentos.slice(-1)[0])-1].style.background = "red";
+                           this.hits >= this.position.length ? hundido(Barcos.indexOf(this)) : console.log("tocado");
+                           //console.log(this.hits)
+                       }
+                   };
+        }
+
+        function hundido(num){
+            cruces[num].style.opacity = 1;
+        }
+
+        const Barcos = [];
+
+        const Barcon1 = new Barco(1,2,3);
+        const Barcon2 = new Barco(55,56,57);
+        const Barcon3 = new Barco(7,17,27);
+        const Barcon4 = new Barco(31,41,51);
+        Barcos.push(Barcon1,Barcon2,Barcon3,Barcon4)
+
+
+        let imagenBarco = ""
+        for(let j = 0; j < Barcos.length; j++){
+            imagenBarco += "<div class='contenedorBarco'><i class='fas fa-skull-crossbones'></i><img src='./assets/img/barco.svg' alt=''></div>";
+        }
+        let shipConainer = document.getElementById("shipContainer")
+        shipConainer.innerHTML += imagenBarco;
+
+        const cruces = document.getElementsByClassName("fa-skull-crossbones");
+
+        const intentos = []
+        let contador = 101
+        for(let i =0; i<boxes.length; i++){
+            boxes[i].onclick = function(){
+                //console.log(this.getAttribute("value"))
+                intentos.push(parseInt(this.getAttribute("value")))
+                const distinctIntentos = [...new Set(intentos)]
+                console.log(distinctIntentos);
+                this.setAttribute("value", contador++)
+                barcos[(intentos.slice(-1)[0])-1].style.background = "blue";
+                //Barco.sink(distinctIntentos)
+               for(let Barco of Barcos){
+                   Barco.sink(distinctIntentos);
+               }
+            }
+        }
+
+    </script>
+</body>
+</html>

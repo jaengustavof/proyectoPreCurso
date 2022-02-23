@@ -1,0 +1,132 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../img/fondo.webp');
+    background-position: center;
+}
+
+.gameContainer {
+    width: 440px;
+    height: 440px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    box-shadow: 4px 4px 7px black;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    
+}
+
+.letras {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 40px;
+}
+
+.letras div, .numeros div{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Black Ops One', cursive;
+}
+
+
+main {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.barcos {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.box{
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 16px;
+}
+
+.barco {   
+    color: #fff;
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 16px;
+}
+
+#shipContainer { 
+    width: 200px;
+    height: 440px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-left: 50px;
+    box-shadow: 4px 4px 7px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.title {
+    width: 100%;
+    height: 40px;
+    font-family: 'Black Ops One', cursive;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedorBarco{
+    width: 100%;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.fa-skull-crossbones {
+    position: absolute;
+    z-index: 2;
+    color: tomato;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+
+.contenedorBarco img {
+    width: 80%;
+}
