@@ -28,16 +28,16 @@
                        }              
                    };
         }
-
+        /*Funcion para las cruces*/
         function hundido(num){
             cruces[num].style.opacity = 1;
         }
-
+        /*Funcion para el fondo del barco*/
         function tocado(num){
             console.log("hey")
             contenedorBarco[num].style.animation = "example 0.2s linear 3";  
         }
-
+        /*Reestablece los valores css del elemento fondo del barco*/
         function clear(){
             for(contenedor of contenedorBarco){
                 contenedor.style.animation = ""
@@ -57,7 +57,7 @@
         for(let j = 0; j < Barcos.length; j++){
             imagenBarco += "<div class='contenedorBarco'><i class='fas fa-skull-crossbones'></i><img src='./assets/img/barco.svg' alt=''></div>";
         }
-        
+
         let shipConainer = document.getElementById("shipContainer")
         shipConainer.innerHTML += imagenBarco;
 
