@@ -16,16 +16,16 @@
         const barcos = document.querySelectorAll(".barco");
         const boxes = document.querySelectorAll(".box");
 
-        function Barco(a,b,c){
-            this.position = [a,b,c];
+        function Barco(arr){
+            this.position = arr;
             this.hits = 0;
-            this.sink = function(intentos){
+            this.sink = function(intentos){               
                        if(this.position.includes(intentos.slice(-1)[0])) {
                            this.hits++;
                            barcos[(intentos.slice(-1)[0])-1].style.background = "red";
-                           this.hits >= this.position.length ? hundido(Barcos.indexOf(this)) : console.log("tocado");
+                           this.hits >= this.position.length ? hundido(Barcos.indexOf(this)) : tocado(Barcos.indexOf(this));
                            //console.log(this.hits)
-                       }
+                       }              
                    };
         }
 
@@ -33,13 +33,23 @@
             cruces[num].style.opacity = 1;
         }
 
+        function tocado(num){
+            console.log("hey")
+            contenedorBarco[num].style.animation = "example 0.2s linear 3";  
+        }
+
+        function clear(){
+            for(contenedor of contenedorBarco){
+                contenedor.style.animation = ""
+            }
+        }
+
         /*Se crea el array que llevará a los objetos y sus respectivos objetos*/
         const Barcos = [];
-
-        const Barcon1 = new Barco(1,2,3);
-        const Barcon2 = new Barco(55,56,57);
-        const Barcon3 = new Barco(7,17,27);
-        const Barcon4 = new Barco(31,41,51);
+        const Barcon1 = new Barco([1,2,3]);
+        const Barcon2 = new Barco([55,56,57]);
+        const Barcon3 = new Barco([7,17,27]);
+        const Barcon4 = new Barco([31,41,51]);
         Barcos.push(Barcon1,Barcon2,Barcon3,Barcon4)
 
         /*Agregamos las imagenes de los barcos y sus iconos*/
@@ -47,11 +57,13 @@
         for(let j = 0; j < Barcos.length; j++){
             imagenBarco += "<div class='contenedorBarco'><i class='fas fa-skull-crossbones'></i><img src='./assets/img/barco.svg' alt=''></div>";
         }
+        
         let shipConainer = document.getElementById("shipContainer")
         shipConainer.innerHTML += imagenBarco;
 
         /*se guardan los iconos en un array*/
         const cruces = document.getElementsByClassName("fa-skull-crossbones");
+        const contenedorBarco = document.getElementsByClassName("contenedorBarco");
 
         const intentos = []
         let contador = 101
@@ -64,7 +76,7 @@
                 this.setAttribute("value", contador++)
                 barcos[(intentos.slice(-1)[0])-1].style.background = "blue";
                 //Barco.sink(distinctIntentos)
-               for(let Barco of Barcos){
+               for(let Barco of Barcos){ 
                    Barco.sink(distinctIntentos);
                }
             }
